@@ -1,0 +1,59 @@
+<app-spinner-overlay *ngIf="IsWait" overlay="true">
+</app-spinner-overlay>
+
+<div>
+    <mat-form-field>
+        <mat-label>Seed</mat-label>
+        <input matInput placeholder="Seed" [(ngModel)]="seed">
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="GetSpoilerLog(this.seed)">Get Log</button>
+</div>
+
+<div *ngIf="spoilerLog !== null">
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelBasicSettingsOpenState = true"
+            (closed)="panelBasicSettingsOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Seed Info
+                </mat-panel-title>
+                <mat-panel-description *ngIf="panelBasicSettingsOpenState === false">
+                    All the base info for the seed.
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field>
+                <mat-label>Seed</mat-label>
+                <input matInput value="{{spoilerLog.seed}}" disabled>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Version</mat-label>
+                <input matInput value="{{spoilerLog.version}}" disabled>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Logic Rules</mat-label>
+                <input matInput value="{{spoilerLog.settings.logicRules}}" disabled>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Settings String</mat-label>
+                <input matInput value="{{spoilerLog.settingsString}}" disabled>
+            </mat-form-field>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelLocationOpenState = true" (closed)="panelLocationOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Locations
+                </mat-panel-title>
+                <mat-panel-description *ngIf="panelLocationOpenState === false">
+                    All of the individual location checks
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-grid-list cols="4" rowHeight="60px">
+                <mat-grid-tile *ngFor="let location of spoilerLog.locations; trackBy: trackByFn">
+                        <app-spoiler-item [Location]="location"></app-spoiler-item>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
