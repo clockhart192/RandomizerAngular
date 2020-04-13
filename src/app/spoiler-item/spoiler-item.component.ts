@@ -9,12 +9,20 @@ export class SpoilerItemComponent implements OnInit {
 
   @Input() Item: any;
   Revealed: boolean = false;
+  labelPosition: 'before' | 'after' = 'before';
   
   LocationName: string = "";
 
   constructor() { }
 
   ngOnInit(): void {
+    let locations : string[] = [];
+
+    this.Item.locationNames.forEach(location => {
+      locations.push(location.itemText);
+    });
+
+    this.LocationName = locations.join(' | ');
   }
 
   toggleReveal(): void {

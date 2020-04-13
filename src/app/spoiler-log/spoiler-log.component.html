@@ -49,9 +49,9 @@
                 </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <mat-grid-list cols="6" rowHeight="100px">
+            <mat-grid-list cols="6" rowHeight="130px">
                 <mat-grid-tile *ngFor="let item of spoilerLog.mainItems">
-                        <app-spoiler-item [Item]="item"></app-spoiler-item>
+                    <div style="width: 100%;"><app-spoiler-item [Item]="item"></app-spoiler-item></div>
                 </mat-grid-tile>
             </mat-grid-list>
         </mat-expansion-panel>

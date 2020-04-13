@@ -1,23 +1,14 @@
-<div class="item-container" *ngIf="Item.hasMultipleLocations; then multiLocationRender else singleLocationRender"></div>
-<ng-template #multiLocationRender>
-    <mat-checkbox [(ngModel)]="Revealed" (change)="toggleReveal()">
-        <span> {{Item.name}} </span>
-        <img src="assets/images/Ocarina of Time/{{Item.imageURL}}">
-    </mat-checkbox>
-    <div *ngFor="let upgrade of Item.upgrades">
-        <mat-checkbox>{{upgrade.upgradeText}}</mat-checkbox>
+<div>
+    <div class="pull-right">
+        <img #tooltip="matTooltip" matTooltip="{{LocationName}}" class="hover multiline_tooltip"
+            (click)="tooltip.toggle()" (mouseenter)="$event.stopImmediatePropagation()"
+            (mouseleave)="$event.stopImmediatePropagation()" src="assets/images/Ocarina of Time/{{Item.imageURL}}" />
     </div>
-</ng-template>
-<ng-template #singleLocationRender>
-    <mat-checkbox [(ngModel)]="Revealed" (change)="toggleReveal()">
-        <span> {{Item.name}} </span>
-        <img src="assets/images/Ocarina of Time/{{Item.imageURL}}">
-    </mat-checkbox>
-    <div>
-        <mat-form-field class="location_field">
-            <input matInput value="{{LocationName}}" disabled>
-            <mat-icon class="hover" *ngIf="!Revealed" matSuffix (mouseover)="viewText()" (mouseout)="hideText()">
-                remove_red_eye</mat-icon>
-        </mat-form-field>
+    <div class="pull-right">
+        <mat-checkbox [labelPosition]="labelPosition" [(ngModel)]="Revealed" (change)="toggleReveal()"> {{Item.name}}
+        </mat-checkbox>
     </div>
-</ng-template>
+    <div class="pull-right" *ngFor="let upgrade of Item.upgrades">
+        <mat-checkbox [labelPosition]="labelPosition">{{upgrade.upgradeText}}</mat-checkbox>
+    </div>
+</div>

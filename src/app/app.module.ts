@@ -21,6 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 import { SpoilerLogComponent } from './spoiler-log/spoiler-log.component';
 import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 import { SpoilerItemComponent } from './spoiler-item/spoiler-item.component';
@@ -53,7 +55,8 @@ import { SpoilerLocationComponent } from './spoiler-location/spoiler-location.co
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCheckboxModule
   ],
   providers: [SpoilerLogApiService],
   bootstrap: [AppComponent]

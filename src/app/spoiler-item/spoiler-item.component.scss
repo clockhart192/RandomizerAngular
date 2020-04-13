@@ -1,9 +1,19 @@
-
-
-.location_field{
-    max-width: 90%;
-}
-
 .hover{
     cursor: pointer;
+}
+
+.pull-right{
+  display:flex;
+  justify-content: flex-end;
+}
+.pull-left{
+  display:flex;
+  justify-content: flex-start;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
