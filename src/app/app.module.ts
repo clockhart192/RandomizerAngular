@@ -14,6 +14,7 @@ import { SpoilerLogApiService} from './core/spoiler-log-service'
 import { UploadComponent } from './upload/upload.component';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { SpoilerLogComponent } from './spoiler-log/spoiler-log.component';
 import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 import { SpoilerItemComponent } from './spoiler-item/spoiler-item.component';
+import { SpoilerLocationComponent } from './spoiler-location/spoiler-location.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { SpoilerItemComponent } from './spoiler-item/spoiler-item.component';
     NavBarComponent,
     SpoilerLogComponent,
     SpinnerOverlayComponent,
-    SpoilerItemComponent
+    SpoilerItemComponent,
+    SpoilerLocationComponent
   ],
   imports: [
     BrowserModule,

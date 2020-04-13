@@ -20,8 +20,8 @@ export class SpoilerLogApiService {
     }
 
     Post<T>(endpoint: string, body: any = null, contentType: string = 'application/json; charset=utf-8') {
-        //let headers = this.GetHeaders(contentType);
-        let response = this.http.post<T>(this.baseUrl + endpoint, body);//, { headers: headers });
+        let headers = this.GetHeaders(contentType);
+        let response = this.http.post<T>(this.baseUrl + endpoint, body, { headers: headers });
 
         return response; 
     }

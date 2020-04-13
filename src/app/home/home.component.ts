@@ -9,15 +9,16 @@ import { SpoilerLogApiService } from '../core/spoiler-log-service'
 export class HomeComponent implements OnInit {
   
   ping: string = "";
+  pong: string = "";
   constructor(private service: SpoilerLogApiService) { }
 
   ngOnInit(): void {
-    // this.service.Get<string>('ping').subscribe(pong => {
-    //   this.ping = pong;
-    // });
+    this.service.Get<string>('ping').subscribe(pong => {
+      this.ping = pong;
+    });
 
     this.service.Post<string>('Pong').subscribe(pong => {
-      this.ping = pong;
+      this.pong = pong;
     });
   }
 

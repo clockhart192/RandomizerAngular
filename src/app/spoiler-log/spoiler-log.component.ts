@@ -15,7 +15,7 @@ export class SpoilerLogComponent implements OnInit {
 
   panelBasicSettingsOpenState: boolean = false;
   panelLocationOpenState: boolean = false;
-  panelTrialsOpenState: boolean = false;
+  panelMainItemOpenState: boolean = false;
   panelDungeonsOpenState: boolean = false;
   panelEntranceLocationsOpenState: boolean = false;
   panelRandomizedSettingsOpenState: boolean = false;

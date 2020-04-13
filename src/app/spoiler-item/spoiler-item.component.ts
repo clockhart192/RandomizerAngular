@@ -1,34 +1,32 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-
-export interface SpoilerLocation {
-  Name: string;
-  ItemAtLocation: SpoilerItem;
-}
-
-export interface SpoilerItem {
-  Name: string;
-  Model: string;
-  Price: number;
-}
-
 @Component({
   selector: 'app-spoiler-item',
   templateUrl: './spoiler-item.component.html',
   styleUrls: ['./spoiler-item.component.scss']
 })
 export class SpoilerItemComponent implements OnInit {
-  @Input() Location: any;
+
+  @Input() Item: any;
   Revealed: boolean = false;
-  ItemName: string = "";
+  
+  LocationName: string = "";
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  toggleReveal(): void{
-    this.ItemName = this.Revealed ? this.Location.itemAtLocation.name : "";
+  toggleReveal(): void {
+    this.LocationName = this.Revealed ? this.Item.locationNames[0].itemText : "";
+  }
+
+  viewText(): void {
+    this.LocationName = this.Item.locationNames[0].itemText;
+  }
+
+  hideText():void {
+    this.LocationName = "";
   }
 
 }

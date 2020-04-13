@@ -1,0 +1,6 @@
+<img *ngIf="Revealed" src="assets/images/Ocarina of Time/{{Location.itemAtLocation.imageURL}}">
+<mat-form-field>
+    <mat-label>{{Location.name}}</mat-label>
+    <input matInput value="{{ItemName}}" disabled>
+</mat-form-field>  
+<mat-checkbox [(ngModel)]="Revealed" (change)="toggleReveal()"></mat-checkbox>

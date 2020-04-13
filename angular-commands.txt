@@ -1,1 +1,4 @@
 ng generate component <component name> --module app
+
+r> ng build --configuration=dev
+r> ng build --configuration=prod
