@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material.module';
-import { SpoilerLogApiService} from './core/spoiler-log-service'
+import { SpoilerLogApiService} from './services/spoiler-log-service'
 
 import { UploadComponent } from './upload/upload.component';
 import { HomeComponent } from './home/home.component';
@@ -27,6 +27,7 @@ import { SpoilerLogComponent } from './spoiler-log/spoiler-log.component';
 import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 import { SpoilerItemComponent } from './spoiler-item/spoiler-item.component';
 import { SpoilerLocationComponent } from './spoiler-location/spoiler-location.component';
+import { CreateSessionComponent } from './create-session/create-session.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SpoilerLocationComponent } from './spoiler-location/spoiler-location.co
     SpoilerLogComponent,
     SpinnerOverlayComponent,
     SpoilerItemComponent,
-    SpoilerLocationComponent
+    SpoilerLocationComponent,
+    CreateSessionComponent
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,14 @@
 <div>
     <div class="pull-right">
-        <img #tooltip="matTooltip" matTooltip="{{LocationName}}" class="hover multiline_tooltip"
+        <img #tooltip="matTooltip" matTooltip="{{LocationNames}}" class="hover multiline_tooltip"
             (click)="tooltip.toggle()" (mouseenter)="$event.stopImmediatePropagation()"
-            (mouseleave)="$event.stopImmediatePropagation()" src="assets/images/Ocarina of Time/{{Item.imageURL}}" />
+            (mouseleave)="$event.stopImmediatePropagation()" src="assets/images/Ocarina of Time/{{Item.ImageURL}}" />
     </div>
     <div class="pull-right">
-        <mat-checkbox [labelPosition]="labelPosition" [(ngModel)]="Revealed" (change)="toggleReveal()"> {{Item.name}}
+        <mat-checkbox [labelPosition]="labelPosition" [(ngModel)]="Item.Revealed" (change)="toggleReveal()"> {{Item.Name}}
         </mat-checkbox>
     </div>
-    <div class="pull-right" *ngFor="let upgrade of Item.upgrades">
-        <mat-checkbox [labelPosition]="labelPosition">{{upgrade.upgradeText}}</mat-checkbox>
+    <div class="pull-right" *ngFor="let Upgrade of Item.Upgrades">
+        <mat-checkbox [labelPosition]="labelPosition" [(ngModel)]="Upgrade.Revealed" (change)="toggleReveal()">{{Upgrade.UpgradeText}}</mat-checkbox>
     </div>
 </div>

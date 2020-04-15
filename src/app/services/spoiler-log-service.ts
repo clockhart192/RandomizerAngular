@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class SpoilerLogApiService {
     constructor(private http: HttpClient) { }
 
-    baseUrl: string = environment.baseUrl + 'spoilerlog/';
+    baseUrl: string = environment.baseUrl + 'api/';
 
     private GetHeaders(contentType: string = 'application/json; charset=utf-8'): HttpHeaders {
         let headers = new HttpHeaders().set('Accept', '*/*');

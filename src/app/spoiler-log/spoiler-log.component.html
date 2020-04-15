@@ -1,14 +1,20 @@
 <app-spinner-overlay *ngIf="IsWait" overlay="true">
 </app-spinner-overlay>
 
-<div>
+<div style="display: none;">
     <mat-form-field>
         <mat-label>Seed</mat-label>
         <input matInput placeholder="Seed" [(ngModel)]="seed">
     </mat-form-field>
     <button mat-flat-button color="primary" (click)="GetSpoilerLog(this.seed)">Get Log</button>
 </div>
-
+<div>
+    <mat-form-field>
+        <mat-label>Session ID</mat-label>
+        <input matInput placeholder="Session ID" [(ngModel)]="session">
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="GetRandomizerSession(this.session)">Join Session</button>
+</div>
 <div *ngIf="spoilerLog !== null">
     <mat-accordion>
         <mat-expansion-panel (opened)="panelBasicSettingsOpenState = true"
@@ -17,25 +23,25 @@
                 <mat-panel-title>
                     Seed Info
                 </mat-panel-title>
-                <mat-panel-description *ngIf="panelBasicSettingsOpenState === false">
+                <mat-panel-description class="pull-right" *ngIf="panelBasicSettingsOpenState === false">
                     All the base info for the seed.
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-form-field>
                 <mat-label>Seed</mat-label>
-                <input matInput value="{{spoilerLog.seed}}" disabled>
+                <input matInput value="{{spoilerLog.Seed}}" disabled>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Version</mat-label>
-                <input matInput value="{{spoilerLog.version}}" disabled>
+                <input matInput value="{{spoilerLog.Version}}" disabled>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Logic Rules</mat-label>
-                <input matInput value="{{spoilerLog.settings.logicRules}}" disabled>
+                <input matInput value="{{spoilerLog.Settings.LogicRules}}" disabled>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Settings String</mat-label>
-                <input matInput value="{{spoilerLog.settingsString}}" disabled>
+                <input matInput value="{{spoilerLog.SettingsString}}" disabled>
             </mat-form-field>
         </mat-expansion-panel>
 
@@ -44,14 +50,65 @@
                 <mat-panel-title>
                     Main Items
                 </mat-panel-title>
-                <mat-panel-description *ngIf="panelMainItemOpenState === false">
+                <mat-panel-description class="pull-right" *ngIf="panelMainItemOpenState === false">
                     All of the items on the item select screen
                 </mat-panel-description>
             </mat-expansion-panel-header>
 
             <mat-grid-list cols="6" rowHeight="130px">
-                <mat-grid-tile *ngFor="let item of spoilerLog.mainItems">
-                    <div style="width: 100%;"><app-spoiler-item [Item]="item"></app-spoiler-item></div>
+                <mat-grid-tile *ngFor="let Item of spoilerLog.MainItems">
+                    <div style="width: 100%;"><app-spoiler-item [Item]="Item"></app-spoiler-item></div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-expansion-panel>
+
+         <mat-expansion-panel (opened)="panelEquipmentOpenState = true" (closed)="panelEquipmentOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Equipment
+                </mat-panel-title>
+                <mat-panel-description class="pull-right" *ngIf="panelEquipmentOpenState === false">
+                    All of the items on the equipment select screen
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-grid-list cols="6" rowHeight="130px">
+                <mat-grid-tile *ngFor="let Item of spoilerLog.Equipment">
+                    <div style="width: 100%;"><app-spoiler-item [Item]="Item"></app-spoiler-item></div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelSongsOpenState = true" (closed)="panelSongsOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Songs
+                </mat-panel-title>
+                <mat-panel-description class="pull-right" *ngIf="panelSongsOpenState === false">
+                    All of the ocarina songs
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-grid-list cols="6" rowHeight="130px">
+                <mat-grid-tile *ngFor="let Item of spoilerLog.Songs">
+                    <div style="width: 100%;"><app-spoiler-item [Item]="Item"></app-spoiler-item></div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelDungeonRewardsOpenState = true" (closed)="panelDungeonRewardsOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Dungeon Rewards
+                </mat-panel-title>
+                <mat-panel-description class="pull-right" *ngIf="panelDungeonRewardsOpenState === false">
+                    All of the boss rewards
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-grid-list cols="6" rowHeight="130px">
+                <mat-grid-tile *ngFor="let Item of spoilerLog.DungeonRewards">
+                    <div style="width: 100%;"><app-spoiler-item [Item]="Item"></app-spoiler-item></div>
                 </mat-grid-tile>
             </mat-grid-list>
         </mat-expansion-panel>

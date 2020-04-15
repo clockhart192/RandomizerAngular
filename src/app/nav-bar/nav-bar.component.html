@@ -5,10 +5,12 @@
     <mat-nav-list>
       <a [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/"]'
         mat-list-item>Home</a>
+        <a [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/spoiler-log"]' 
+        mat-list-item>Join Session</a>
       <a [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/upload"]'
-        mat-list-item>Upload</a>
-      <a [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'
-        [routerLink]='["/spoiler-log"]' mat-list-item>Spoiler Log</a>
+        mat-list-item>Upload Log</a>
+      <a [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/create-session"]'
+        mat-list-item>Create Session</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

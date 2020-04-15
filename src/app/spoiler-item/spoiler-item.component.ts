@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { EventEmitterService } from '../services/event-emitter.service';
+import { Item } from '../core/models/spoiler-log';
 
 @Component({
   selector: 'app-spoiler-item',
@@ -6,35 +8,27 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./spoiler-item.component.scss']
 })
 export class SpoilerItemComponent implements OnInit {
+  @Input() Item: Item;
+  labelPosition: 'before' | 'after' = 'after';
 
-  @Input() Item: any;
-  Revealed: boolean = false;
-  labelPosition: 'before' | 'after' = 'before';
-  
-  LocationName: string = "";
+  LocationNames: string = "";
 
-  constructor() { }
+  constructor(private eventEmitterService: EventEmitterService) { }
 
   ngOnInit(): void {
-    let locations : string[] = [];
+    if (this.Item.LocationNames != null) {
+      let locations: string[] = [];
 
-    this.Item.locationNames.forEach(location => {
-      locations.push(location.itemText);
-    });
+      this.Item.LocationNames.forEach(location => {
+        locations.push(location.ItemText);
+      });
 
-    this.LocationName = locations.join(' | ');
+      this.LocationNames = locations.join(' | ');
+    }
   }
 
   toggleReveal(): void {
-    this.LocationName = this.Revealed ? this.Item.locationNames[0].itemText : "";
-  }
-
-  viewText(): void {
-    this.LocationName = this.Item.locationNames[0].itemText;
-  }
-
-  hideText():void {
-    this.LocationName = "";
+    this.eventEmitterService.onInvokeSave();
   }
 
 }

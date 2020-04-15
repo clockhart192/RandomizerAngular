@@ -1,3 +1,12 @@
 .mat-flat-button{
     margin: 5px;
 }
+
+.pull-right{
+    display:flex;
+    justify-content: flex-end;
+  }
+  .pull-left{
+    display:flex;
+    justify-content: flex-start;
+  }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SpoilerLogApiService } from '../core/spoiler-log-service'
+import { SpoilerLogApiService } from '../services/spoiler-log-service'
 
 @Component({
   selector: 'app-home',
