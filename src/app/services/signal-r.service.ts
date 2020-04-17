@@ -3,13 +3,14 @@ import * as signalR from "@aspnet/signalr";
 import { environment } from '../../environments/environment';
 import { EventEmitterService } from '../services/event-emitter.service';
 import { OoTSpoilerLog } from '../core/models/spoiler-log';
+import { SaveSessionResponse } from '../core/responses/save-session-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignalRService {
   constructor(private eventEmitterService: EventEmitterService) { }
-  public data: OoTSpoilerLog;
+  public data: SaveSessionResponse                                                                                               ;
 
   private hubConnection: signalR.HubConnection;
 
@@ -25,7 +26,7 @@ export class SignalRService {
   }
 
   public addSpoilerLogDataListener = () => {
-    this.hubConnection.on('sendSpoilerData', (data:OoTSpoilerLog) => {
+    this.hubConnection.on('sendSpoilerData', (data:SaveSessionResponse) => {
       this.data = data;
       this.eventEmitterService.onUpdateReceived(data);
     });

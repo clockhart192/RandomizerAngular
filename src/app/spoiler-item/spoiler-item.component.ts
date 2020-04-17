@@ -9,6 +9,7 @@ import { Item } from '../core/models/spoiler-log';
 })
 export class SpoilerItemComponent implements OnInit {
   @Input() Item: Item;
+  @Input() PlayerView: boolean;
   labelPosition: 'before' | 'after' = 'after';
 
   LocationNames: string = "";
@@ -16,7 +17,7 @@ export class SpoilerItemComponent implements OnInit {
   constructor(private eventEmitterService: EventEmitterService) { }
 
   ngOnInit(): void {
-    if (this.Item.LocationNames != null) {
+    if (this.Item.LocationNames != null && !this.PlayerView) {
       let locations: string[] = [];
 
       this.Item.LocationNames.forEach(location => {

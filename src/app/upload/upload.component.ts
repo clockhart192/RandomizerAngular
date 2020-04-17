@@ -1,6 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { SpoilerLogApiService } from '../services/spoiler-log-service';
+import { CreateSessionRequest } from '../core/requests/create-session-request';
+import { OoTSpoilerLog } from '../core/models/spoiler-log';
+import { OoTRandomizerSession } from '../core/models/session-models'
+import { Game } from '../core/enums';
 
 @Component({
   selector: 'app-upload',
@@ -8,20 +13,21 @@ import { SpoilerLogApiService } from '../services/spoiler-log-service';
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
+  public progress: number = 0;
+  public message: string = "";
+  IsWait: boolean = false;
 
-  public ping: string;
-  public progress: number;
-  public message: string;
+  public session: string = "";
+  public spoilerLog: OoTSpoilerLog = null;
+  public RandomizerSession: OoTRandomizerSession = null;
 
-  constructor(private service: SpoilerLogApiService) {
-    this.service.Get<string>('upload/ping').subscribe(result => {
-      this.ping = result;
-    }, error => console.error(error));
-  }
-  ngOnInit(): void {
-  }
+  constructor(private http: HttpClient, private service: SpoilerLogApiService) {  }
+  
+  ngOnInit(): void {  }
 
   upload(files): void {
+    this.IsWait = true;
+
     if (files.length === 0)
       return;
 
@@ -30,11 +36,25 @@ export class UploadComponent implements OnInit {
     for (let file of files)
       formData.append(file.name, file);
 
-    this.service.Post<any>('upload/UploadFile', formData).subscribe(event => {
+    const uploadReq = new HttpRequest('POST', environment.baseUrl + 'api/upload', formData);
+
+    this.http.request<OoTSpoilerLog>(uploadReq).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress)
         this.progress = Math.round(100 * event.loaded / event.total);
-      else if (event.type === HttpEventType.Response)
-        this.message = event.body.toString();
+      else if (event.type === HttpEventType.Response) {
+        this.spoilerLog = event.body;
+      }
+      this.IsWait = false;
     });
+  }
+
+  CreateSession(session: string) {
+    this.IsWait = true;
+    let request = new CreateSessionRequest(session, '', this.spoilerLog.Seed, Game.OcarinaOfTime, this.spoilerLog);
+
+    this.service.Post<OoTRandomizerSession>('Session/CreateSession', request).subscribe(session => {
+      this.RandomizerSession = session;
+      this.IsWait = false;
+    }, error => console.error(error));
   }
 }

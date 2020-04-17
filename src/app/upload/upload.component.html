@@ -1,4 +1,7 @@
-<div>
+<app-spinner-overlay *ngIf="IsWait" overlay="true">
+</app-spinner-overlay>
+
+<div *ngIf="spoilerLog === null">
     <h1>Upload your spoiler log here!</h1>
     <input #file type="file" multiple (change)="upload(file.files)" />
     <br />
@@ -9,4 +12,17 @@
     <span style="font-weight:bold;color:green;" *ngIf="message">
         {{message}}
     </span>
+</div>
+
+<div *ngIf="spoilerLog != null && RandomizerSession === null">
+    <h1>It worked! Name Your session.</h1>
+    <mat-form-field>
+        <mat-label>Session ID</mat-label>
+        <input matInput placeholder="Session ID" [(ngModel)]="session">
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="CreateSession(this.session)">Create Session</button>
+</div>
+
+<div *ngIf="RandomizerSession != null">
+    <app-spoiler-log [RandomizerSession]="RandomizerSession"></app-spoiler-log>
 </div>
