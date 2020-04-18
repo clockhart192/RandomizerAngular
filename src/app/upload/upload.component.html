@@ -2,20 +2,20 @@
 </app-spinner-overlay>
 
 <div *ngIf="spoilerLog === null">
-    <h1>Upload your spoiler log here!</h1>
+    <h1>1.) Upload your spoiler log</h1>
     <input #file type="file" multiple (change)="upload(file.files)" />
     <br />
     <span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">
         {{progress}}%
     </span>
 
-    <span style="font-weight:bold;color:green;" *ngIf="message">
+    <span style="font-weight:bold;color:red;" *ngIf="message">
         {{message}}
     </span>
 </div>
 
 <div *ngIf="spoilerLog != null && RandomizerSession === null">
-    <h1>It worked! Name Your session.</h1>
+    <h1>2.) Name your session</h1>
     <mat-form-field>
         <mat-label>Session ID</mat-label>
         <input matInput placeholder="Session ID" [(ngModel)]="session">

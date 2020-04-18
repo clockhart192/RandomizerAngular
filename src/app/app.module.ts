@@ -14,6 +14,11 @@ import { SpoilerLogApiService} from './services/spoiler-log-service'
 import { UploadComponent } from './upload/upload.component';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SpoilerLogComponent } from './spoiler-log/spoiler-log.component';
+import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
+import { SpoilerItemComponent } from './spoiler-item/spoiler-item.component';
+import { SpoilerLocationComponent } from './spoiler-location/spoiler-location.component';
+import { ManageSessionsComponent } from './manage-sessions/manage-sessions.component';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,12 +27,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
-import { SpoilerLogComponent } from './spoiler-log/spoiler-log.component';
-import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
-import { SpoilerItemComponent } from './spoiler-item/spoiler-item.component';
-import { SpoilerLocationComponent } from './spoiler-location/spoiler-location.component';
-import { CreateSessionComponent } from './create-session/create-session.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +38,7 @@ import { CreateSessionComponent } from './create-session/create-session.componen
     SpinnerOverlayComponent,
     SpoilerItemComponent,
     SpoilerLocationComponent,
-    CreateSessionComponent
+    ManageSessionsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +46,8 @@ import { CreateSessionComponent } from './create-session/create-session.componen
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'upload', component: UploadComponent },
-      { path: 'spoiler-log', component: SpoilerLogComponent }
+      { path: 'spoiler-log', component: SpoilerLogComponent },
+      { path: 'manage-sessions', component: ManageSessionsComponent }
     ]),
     BrowserAnimationsModule,
     HttpClientModule,

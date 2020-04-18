@@ -21,9 +21,9 @@ export class UploadComponent implements OnInit {
   public spoilerLog: OoTSpoilerLog = null;
   public RandomizerSession: OoTRandomizerSession = null;
 
-  constructor(private http: HttpClient, private service: SpoilerLogApiService) {  }
-  
-  ngOnInit(): void {  }
+  constructor(private http: HttpClient, private service: SpoilerLogApiService) { }
+
+  ngOnInit(): void { }
 
   upload(files): void {
     this.IsWait = true;
@@ -42,9 +42,13 @@ export class UploadComponent implements OnInit {
       if (event.type === HttpEventType.UploadProgress)
         this.progress = Math.round(100 * event.loaded / event.total);
       else if (event.type === HttpEventType.Response) {
+        console.log(event);
         this.spoilerLog = event.body;
       }
       this.IsWait = false;
+    }, error => {
+      console.error(error);
+      this.message = "Error uploading file, invalid format.";
     });
   }
 
@@ -55,6 +59,8 @@ export class UploadComponent implements OnInit {
     this.service.Post<OoTRandomizerSession>('Session/CreateSession', request).subscribe(session => {
       this.RandomizerSession = session;
       this.IsWait = false;
-    }, error => console.error(error));
+    }, error => {
+      console.error(error);
+    });
   }
 }

@@ -1,6 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';    
 import { Subscription } from 'rxjs/internal/Subscription';
-import { OoTSpoilerLog } from '../core/models/spoiler-log';    
 import { SaveSessionResponse } from '../core/responses/save-session-response';
     
 @Injectable({    

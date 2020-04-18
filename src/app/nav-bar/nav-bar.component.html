@@ -9,6 +9,8 @@
         mat-list-item>Create Session</a>
       <a [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/spoiler-log"]'
        mat-list-item>Join/Resume Session</a>
+       <a [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/manage-sessions"]'
+       mat-list-item>Manage Sessions</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -22,4 +24,4 @@
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> 

@@ -1,0 +1,28 @@
+<app-spinner-overlay *ngIf="IsWait" overlay="true">
+</app-spinner-overlay>
+
+<div *ngIf="Sessions != null">
+
+    <table style="width: 100%;" mat-table [dataSource]="Sessions" class="" matSort matSortActive="SessionID" matSortDisableClear matSortDirection="desc">
+        <!-- SessionID Column -->
+        <ng-container matColumnDef="SessionID">
+            <th mat-header-cell *matHeaderCellDef>Session ID</th>
+            <td mat-cell *matCellDef="let Session">{{Session.SessionID}}</td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef disableClear class="pull-right">
+                Created
+            </th>
+            <td mat-cell *matCellDef="let Session" class="pull-right">
+                <mat-icon style="cursor: pointer; display: none;">edit</mat-icon>
+                <mat-icon style="cursor: pointer;" (click)="DeleteSession(Session)">delete</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="DisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let Session; columns: DisplayedColumns;"></tr>
+    </table>
+
+</div>

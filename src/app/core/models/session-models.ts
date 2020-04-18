@@ -10,3 +10,13 @@ export interface OoTRandomizerSession
     View: View;
     SpoilerLog: OoTSpoilerLog;
 }
+
+export interface RandomizerSession
+    {
+        ID: number;
+        SessionID: string;
+        Password: string;
+
+        Game: Game;
+        SpoilerLog: string;
+    }

@@ -1,13 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
+
 import { SpoilerLogApiService } from '../services/spoiler-log-service';
-import { SaveSpoilerLogRequest } from '../core/requests/save-spoiler-log-request';
-import { JoinSessionRequest } from '../core/requests/join-session-request';
 import { SignalRService } from '../services/signal-r.service';
 import { EventEmitterService } from '../services/event-emitter.service';
-import { Subscription } from 'rxjs/internal/Subscription';
+
 import { OoTRandomizerSession } from '../core/models/session-models';
-import { View } from '../core/enums';
+
+import { SaveSpoilerLogRequest } from '../core/requests/save-spoiler-log-request';
+import { JoinSessionRequest } from '../core/requests/join-session-request';
+
 import { SaveSessionResponse } from '../core/responses/save-session-response';
+
+import { View } from '../core/enums';
 
 @Component({
   selector: 'app-spoiler-log',
@@ -78,11 +83,12 @@ export class SpoilerLogComponent implements OnInit {
   }
 
   SaveSession(): void {
-    this.IsWait = true;
+    //this.IsWait = true;
     let view = this.playerView ? View.Player : View.Spectator;
     let req = new SaveSpoilerLogRequest(this.RandomizerSession.SessionID, this.RandomizerSession.SpoilerLog, view);
+    this.signalRService.BroadcastUpdatedSession(req);
     this.service.Post<OoTRandomizerSession>('Session/SaveSession', req).subscribe(log => {
-      this.IsWait = false;
+      //this.IsWait = false;
     });
   }
 
@@ -90,8 +96,6 @@ export class SpoilerLogComponent implements OnInit {
     var sub = new Subscription();
 
     sub.add(this.eventEmitterService.invokeLoad.subscribe((resp: SaveSessionResponse) => {
-      //this.spoilerLog = session.SpoilerLog;
-      //console.log("randomizer", randomizer);
       if(resp.ID == this.RandomizerSession.SessionID)
         this.RandomizerSession.SpoilerLog = resp.SpoilerLog;
     }));
