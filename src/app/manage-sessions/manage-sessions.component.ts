@@ -29,9 +29,14 @@ export class ManageSessionsComponent implements OnInit {
   GetAllSessions(): void {
     this.IsWait = true;
     this.service.Post<RandomizerSession[]>('Session/GetAllSessions').subscribe(sessions => {
+      console.log(sessions);
       this.Sessions = sessions;
       this.IsWait = false;
-    });
+    },
+      err => {
+        console.log('HTTP Error', err);
+        this.IsWait = false;
+      });
   }
 
   UpdateSession(): void {

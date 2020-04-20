@@ -11,136 +11,248 @@
         <button mat-flat-button color="primary" (click)="JoinSession()">{{JoinResumeButtonText}}</button>
     </div>
     <div>
-        <mat-slide-toggle  color="primary" [(ngModel)]="playerView" (change)="ChangeText()">
+        <mat-slide-toggle color="primary" [(ngModel)]="playerView" (change)="ChangeText()">
             {{SpectatorPlayerSlideToggleText}}
         </mat-slide-toggle>
     </div>
 </div>
 <div *ngIf="RandomizerSession != null">
-
     <h1>Session: {{RandomizerSession.SessionID}}</h1>
     <h3>View: {{View}}</h3>
-    <mat-accordion>
-        <mat-expansion-panel (opened)="panelBasicSettingsOpenState = true"
-            (closed)="panelBasicSettingsOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title> 
-                    Seed Info
-                </mat-panel-title>
-                <mat-panel-description class="pull-right" *ngIf="panelBasicSettingsOpenState === false">
-                    All the base info for the seed.
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-form-field>
-                <mat-label>Seed</mat-label>
-                <input matInput value="{{RandomizerSession.SpoilerLog.Seed}}" disabled>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Version</mat-label>
-                <input matInput value="{{RandomizerSession.SpoilerLog.Version}}" disabled>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Logic Rules</mat-label>
-                <input matInput value="{{RandomizerSession.SpoilerLog.Settings.LogicRules}}" disabled>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Settings String</mat-label>
-                <input matInput value="{{RandomizerSession.SpoilerLog.SettingsString}}" disabled>
-            </mat-form-field>
-        </mat-expansion-panel>
 
-        <mat-expansion-panel (opened)="panelMainItemOpenState = true" (closed)="panelMainItemOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Main Items
-                </mat-panel-title>
-                <mat-panel-description class="pull-right" *ngIf="panelMainItemOpenState === false">
-                    All of the items on the item select screen
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+    <mat-tab-group>
+        <mat-tab label="Items">
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelBasicSettingsOpenState = true"
+                    (closed)="panelBasicSettingsOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Seed Info
+                        </mat-panel-title>
+                        <mat-panel-description class="pull-right" *ngIf="panelBasicSettingsOpenState === false">
+                            All the base info for the seed.
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <mat-label>Seed</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.Seed}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Version</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.Version}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Logic Rules</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.Settings.LogicRules}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Settings String</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.SettingsString}}" disabled>
+                    </mat-form-field>
+                </mat-expansion-panel>
 
-            <mat-grid-list cols="6" rowHeight="130px">
-                <mat-grid-tile *ngFor="let Item of RandomizerSession.SpoilerLog.MainItems">
-                    <div style="width: 100%;">
-                        <app-spoiler-item [Item]="Item" [PlayerView]="this.playerView"></app-spoiler-item>
-                    </div>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelMainItemOpenState = true" (closed)="panelMainItemOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Main Items
+                        </mat-panel-title>
+                        <mat-panel-description class="pull-right" *ngIf="panelMainItemOpenState === false">
+                            All of the items on the item select screen
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
 
-        <mat-expansion-panel (opened)="panelEquipmentOpenState = true" (closed)="panelEquipmentOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Equipment
-                </mat-panel-title>
-                <mat-panel-description class="pull-right" *ngIf="panelEquipmentOpenState === false">
-                    All of the items on the equipment select screen
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+                    <mat-grid-list cols="6" rowHeight="130px">
+                        <mat-grid-tile *ngFor="let Item of RandomizerSession.SpoilerLog.MainItems">
+                            <div style="width: 100%;">
+                                <app-spoiler-item [Item]="Item" [PlayerView]="this.playerView"></app-spoiler-item>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </mat-expansion-panel>
 
-            <mat-grid-list cols="6" rowHeight="130px">
-                <mat-grid-tile *ngFor="let Item of RandomizerSession.SpoilerLog.Equipment">
-                    <div style="width: 100%;">
-                        <app-spoiler-item [Item]="Item" [PlayerView]="this.playerView"></app-spoiler-item>
-                    </div>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelEquipmentOpenState = true"
+                    (closed)="panelEquipmentOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Equipment
+                        </mat-panel-title>
+                        <mat-panel-description class="pull-right" *ngIf="panelEquipmentOpenState === false">
+                            All of the items on the equipment select screen
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
 
-        <mat-expansion-panel (opened)="panelSongsOpenState = true" (closed)="panelSongsOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Songs
-                </mat-panel-title>
-                <mat-panel-description class="pull-right" *ngIf="panelSongsOpenState === false">
-                    All of the ocarina songs
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+                    <mat-grid-list cols="6" rowHeight="130px">
+                        <mat-grid-tile *ngFor="let Item of RandomizerSession.SpoilerLog.Equipment">
+                            <div style="width: 100%;">
+                                <app-spoiler-item [Item]="Item" [PlayerView]="this.playerView"></app-spoiler-item>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </mat-expansion-panel>
 
-            <mat-grid-list cols="6" rowHeight="130px">
-                <mat-grid-tile *ngFor="let Item of RandomizerSession.SpoilerLog.Songs">
-                    <div style="width: 100%;">
-                        <app-spoiler-item [Item]="Item" [PlayerView]="this.playerView"></app-spoiler-item>
-                    </div>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelSongsOpenState = true" (closed)="panelSongsOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Songs
+                        </mat-panel-title>
+                        <mat-panel-description class="pull-right" *ngIf="panelSongsOpenState === false">
+                            All of the ocarina songs
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
 
-        <mat-expansion-panel (opened)="panelDungeonRewardsOpenState = true"
-            (closed)="panelDungeonRewardsOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Dungeon Rewards
-                </mat-panel-title>
-                <mat-panel-description class="pull-right" *ngIf="panelDungeonRewardsOpenState === false">
-                    All of the boss rewards
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+                    <mat-grid-list cols="6" rowHeight="130px">
+                        <mat-grid-tile *ngFor="let Item of RandomizerSession.SpoilerLog.Songs">
+                            <div style="width: 100%;">
+                                <app-spoiler-item [Item]="Item" [PlayerView]="this.playerView"></app-spoiler-item>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </mat-expansion-panel>
 
-            <mat-grid-list cols="6" rowHeight="130px">
-                <mat-grid-tile *ngFor="let Item of RandomizerSession.SpoilerLog.DungeonRewards">
-                    <div style="width: 100%;">
-                        <app-spoiler-item [Item]="Item" [PlayerView]="this.playerView"></app-spoiler-item>
-                    </div>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelDungeonRewardsOpenState = true"
+                    (closed)="panelDungeonRewardsOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Dungeon Rewards
+                        </mat-panel-title>
+                        <mat-panel-description class="pull-right" *ngIf="panelDungeonRewardsOpenState === false">
+                            All of the boss rewards
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
 
-        <!-- <mat-expansion-panel (opened)="panelLocationOpenState = true" (closed)="panelLocationOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Locations
-                </mat-panel-title>
-                <mat-panel-description *ngIf="panelLocationOpenState === false">
-                    All of the individual location checks
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+                    <mat-grid-list cols="6" rowHeight="130px">
+                        <mat-grid-tile *ngFor="let Item of RandomizerSession.SpoilerLog.DungeonRewards">
+                            <div style="width: 100%;">
+                                <app-spoiler-item [Item]="Item" [PlayerView]="this.playerView"></app-spoiler-item>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </mat-expansion-panel>
 
-            <mat-grid-list cols="4" rowHeight="60px">
-                <mat-grid-tile *ngFor="let location of spoilerLog.locations; trackBy: trackByFn">
-                        <app-spoiler-location [Location]="location"></app-spoiler-location>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </mat-expansion-panel> -->
-    </mat-accordion>
+
+            </mat-accordion>
+        </mat-tab>
+        <mat-tab *ngIf="!playerView" label="Locations">
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelLocationOpenState = true" (closed)="panelLocationOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Locations
+                        </mat-panel-title>
+                        <mat-panel-description class="pull-right" *ngIf="panelLocationOpenState === false">
+                            All of the individual location checks
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <mat-grid-list cols="4" rowHeight="60px">
+                        <mat-grid-tile
+                            *ngFor="let Location of RandomizerSession.SpoilerLog.Locations; trackBy: trackByFn">
+                            <app-spoiler-location [Location]="Location"></app-spoiler-location>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-tab>
+        <mat-tab label="Settings">
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelBasicSettingsOpenState = true"
+                    (closed)="panelBasicSettingsOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Seed Info
+                        </mat-panel-title>
+                        <mat-panel-description class="pull-right" *ngIf="panelBasicSettingsOpenState === false">
+                            All the base info for the seed.
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <mat-label>Seed</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.Seed}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Version</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.Version}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Logic Rules</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.Settings.LogicRules}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Settings String</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.SettingsString}}" disabled>
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelRandomizerSettingsOpenState = true"
+                    (closed)="panelRandomizerSettingsOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Randomizer Info
+                        </mat-panel-title>
+                        <mat-panel-description class="pull-right" *ngIf="panelRandomizerSettingsOpenState === false">
+                           Randomized settings for the seed.
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <mat-label>Shopsanity</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.Shopsanity}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Tokensanity</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.Tokensanity}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Scrubs</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleScrubs}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Cows</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleCows}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Songs</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleSongItems}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Kokiri Sword</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleKokiriSword}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Ocarinas</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleOcarinas}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Weird Egg</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleWeirdEgg}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Gerudo Card</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleGerudoCard}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Beans</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleBeans}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Small Keys</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleSmallkeys}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Boss Keys</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleBosskeys}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Shuffle Ganon Boss Key</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleGanonBosskey}}" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Enhance Map Compass</mat-label>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.EnhanceMapCompass}}" disabled>
+                    </mat-form-field>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-tab>
+    </mat-tab-group>
+
+
 </div>

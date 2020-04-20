@@ -1,16 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-
-// export interface SpoilerLocation {
-//   Name: string;
-//   ItemAtLocation: SpoilerItem;
-// }
-
-// export interface SpoilerItem {
-//   Name: string;
-//   Model: string;
-//   Price: number;
-// }
+import { EventEmitterService } from '../services/event-emitter.service';
+import { Location } from '../core/models/spoiler-log';
 
 @Component({
   selector: 'app-spoiler-location',
@@ -18,17 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./spoiler-location.component.scss']
 })
 export class SpoilerLocationComponent implements OnInit {
-  @Input() Location: any;
+  @Input() Location: Location;
   Revealed: boolean = false;
   ItemName: string = "";
 
-  constructor() { }
+  constructor(private eventEmitterService: EventEmitterService) { }
 
   ngOnInit(): void {
   }
 
   toggleReveal(): void{
-    this.ItemName = this.Revealed ? this.Location.itemAtLocation.name : "";
+    this.ItemName = this.Location.Revealed ? this.Location.ItemAtLocation.Name : "";
+    this.eventEmitterService.onInvokeSave();
   }
 
 }

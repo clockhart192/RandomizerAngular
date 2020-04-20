@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://localhost:44362/'
+  //baseUrl: 'https://localhost:44362/'
+  baseUrl: 'https://randomizerapi-dev.ilaena.net/'
 };
 
 /*

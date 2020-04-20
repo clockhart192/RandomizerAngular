@@ -30,7 +30,8 @@ export class SpoilerLogComponent implements OnInit {
   public SpectatorPlayerSlideToggleText = "Spectator";
 
   panelBasicSettingsOpenState: boolean = false;
-  panelLocationOpenState: boolean = false;
+  panelRandomizerSettingsOpenState: boolean = false;
+  panelLocationOpenState: boolean = true;
   panelMainItemOpenState: boolean = false;
   panelEquipmentOpenState: boolean = false;
   panelSongsOpenState: boolean = false;
@@ -53,7 +54,6 @@ export class SpoilerLogComponent implements OnInit {
   }
 
   ChangeText(): void {
-    console.log("this.playerView", this.playerView);
     if (this.playerView) {
       this.JoinResumeButtonText = "Resume Session";
       this.SpectatorPlayerSlideToggleText = "Player";
