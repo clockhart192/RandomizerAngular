@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //baseUrl: 'https://localhost:44362/'
-  baseUrl: 'https://randomizerapi-dev.ilaena.net/'
+  baseUrl: 'https://localhost:44362/'
+  //baseUrl: 'https://randomizerapi-dev.ilaena.net/'
 };
 
 /*
@@ -16,3 +16,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+ 

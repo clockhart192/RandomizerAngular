@@ -23,34 +23,6 @@
     <mat-tab-group>
         <mat-tab label="Items">
             <mat-accordion>
-                <mat-expansion-panel (opened)="panelBasicSettingsOpenState = true"
-                    (closed)="panelBasicSettingsOpenState = false">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Seed Info
-                        </mat-panel-title>
-                        <mat-panel-description class="pull-right" *ngIf="panelBasicSettingsOpenState === false">
-                            All the base info for the seed.
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <mat-form-field>
-                        <mat-label>Seed</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.Seed}}" disabled>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Version</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.Version}}" disabled>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Logic Rules</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.Settings.LogicRules}}" disabled>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Settings String</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.SettingsString}}" disabled>
-                    </mat-form-field>
-                </mat-expansion-panel>
-
                 <mat-expansion-panel (opened)="panelMainItemOpenState = true" (closed)="panelMainItemOpenState = false">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -85,6 +57,11 @@
                         <mat-grid-tile *ngFor="let Item of RandomizerSession.SpoilerLog.Equipment">
                             <div style="width: 100%;">
                                 <app-spoiler-item [Item]="Item" [PlayerView]="this.playerView"></app-spoiler-item>
+                            </div>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <div style="width: 100%;">
+                                <app-spoiler-counter [Counter]="RandomizerSession.SpoilerLog.GoldSkulltulaCount" [PlayerView]="this.playerView"></app-spoiler-item>
                             </div>
                         </mat-grid-tile>
                     </mat-grid-list>

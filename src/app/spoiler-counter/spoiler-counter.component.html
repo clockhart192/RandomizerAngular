@@ -1,0 +1,5 @@
+<img src="assets/images/Ocarina of Time/{{Counter.Label}}.ico" />
+<mat-form-field>
+    <mat-label>{{Counter.Label}}</mat-label>
+    <input matInput (change)="SaveSession()" [(ngModel)]="Counter.Count" value="{{Counter.Count}}">
+</mat-form-field>

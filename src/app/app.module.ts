@@ -27,6 +27,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SpoilerCounterComponent } from './spoiler-counter/spoiler-counter.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     SpinnerOverlayComponent,
     SpoilerItemComponent,
     SpoilerLocationComponent,
-    ManageSessionsComponent
+    ManageSessionsComponent,
+    SpoilerCounterComponent
   ],
   imports: [
     BrowserModule,

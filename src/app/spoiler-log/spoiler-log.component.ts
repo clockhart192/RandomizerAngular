@@ -86,6 +86,7 @@ export class SpoilerLogComponent implements OnInit {
     //this.IsWait = true;
     let view = this.playerView ? View.Player : View.Spectator;
     let req = new SaveSpoilerLogRequest(this.RandomizerSession.SessionID, this.RandomizerSession.SpoilerLog, view);
+    console.log(req);
     this.signalRService.BroadcastUpdatedSession(req);
     this.service.Post<OoTRandomizerSession>('Session/SaveSession', req).subscribe(log => {
       //this.IsWait = false;

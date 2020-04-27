@@ -9,6 +9,7 @@ export interface OoTSpoilerLog extends SpoilerLog {
     Settings: Settings;
     RandomizedSettings: RandomizedSettings;
     FreeItem: Item;
+    GoldSkulltulaCount : CollectionCounter;
     Locations: Location[];
     MainItems: Item[];
     Equipment: Item[];
@@ -47,6 +48,13 @@ export interface ItemLocation
     ID: string;
     ItemText: string;
 }
+
+export interface CollectionCounter 
+{
+    Label: string;
+    Count: number;
+}
+
 export enum ItemType {
     Generic = 0,
     MainItem = 1,
