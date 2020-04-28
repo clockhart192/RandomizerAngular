@@ -17,6 +17,7 @@ export class SpoilerCounterComponent implements OnInit {
   }
 
   counterChanged(): void {
+    console.log("Attempting to trigger save from counter.");
     this.eventEmitterService.onInvokeSave();
   }
 

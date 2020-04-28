@@ -7,8 +7,8 @@ import { EventEmitterService } from '../services/event-emitter.service';
 
 import { OoTRandomizerSession } from '../core/models/session-models';
 
-import { SaveSpoilerLogRequest } from '../core/requests/save-spoiler-log-request';
-import { JoinSessionRequest } from '../core/requests/join-session-request';
+import { SaveSpoilerLogRequest } from '../core/requests/spoiler-log';
+import { JoinSessionRequest } from '../core/requests/sessions';
 
 import { SaveSessionResponse } from '../core/responses/save-session-response';
 
@@ -102,6 +102,7 @@ export class SpoilerLogComponent implements OnInit {
     }));
 
     sub.add(this.eventEmitterService.invokeSave.subscribe(() => {
+      console.log("save emitter triggered");
       this.SaveSession();
     }));
     return sub;

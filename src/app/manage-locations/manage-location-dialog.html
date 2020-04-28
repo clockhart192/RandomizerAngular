@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Manage Location</h1>
+<div mat-dialog-content>
+    <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" value="">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Zone</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let Zone of Zones" [value]="Zone.ID">
+            {{Zone.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Vanilla Item</mat-label>
+        <input matInput placeholder="Vanilla Item" value="">
+      </mat-form-field>
+</div>
+<div mat-dialog-actions class="pull-right">
+  <button mat-flat-button (click)="onNoClick()">Cancel</button>
+  <button mat-flat-button color="primary" cdkFocusInitial>Ok</button>
+</div>

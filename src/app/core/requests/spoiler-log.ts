@@ -4,3 +4,7 @@ import { View } from '../enums';
 export class SaveSpoilerLogRequest {
     constructor(public ID: string, public SpoilerLog: OoTSpoilerLog, public SessionView: View = View.Spectator) { }
 }
+
+export class GetSpoilerLogRequest {
+    constructor(public Seed: string) { }
+}

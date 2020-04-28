@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { EventEmitterService } from '../services/event-emitter.service';
 import { OoTRandomizerSession } from '../core/models/session-models';
 import { SaveSessionResponse } from '../core/responses/save-session-response';
-import { SaveSpoilerLogRequest } from '../core/requests/save-spoiler-log-request';
+import { SaveSpoilerLogRequest } from '../core/requests/spoiler-log';
 
 @Injectable({
   providedIn: 'root'

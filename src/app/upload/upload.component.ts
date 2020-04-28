@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { SpoilerLogApiService } from '../services/spoiler-log-service';
-import { CreateSessionRequest } from '../core/requests/create-session-request';
+import { CreateSessionRequest } from '../core/requests/sessions';
 import { OoTSpoilerLog } from '../core/models/spoiler-log';
 import { OoTRandomizerSession } from '../core/models/session-models'
 import { Game } from '../core/enums';

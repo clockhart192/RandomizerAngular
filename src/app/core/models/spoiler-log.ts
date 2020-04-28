@@ -16,12 +16,16 @@ export interface OoTSpoilerLog extends SpoilerLog {
     Songs: Item[];
     DungeonRewards: Item[];
 }
-export interface Location
+export class Location
 {
-    ID: string;
-    Name: string;
-    ItemAtLocation: Item;
-    Revealed: boolean;
+    public ID: string;
+    public Name: string;
+    public ItemAtLocation: Item;
+    public Revealed: boolean;
+    public ZoneID: number;
+    public DefaultItemAtLocationName: string;
+
+    
 }
 export interface Item
 {
@@ -53,6 +57,14 @@ export interface CollectionCounter
 {
     Label: string;
     Count: number;
+}
+ 
+export class Zone
+{
+    public ID: number;
+    public Name: string;
+    public OrderID: number;
+    public Locaitons: Location[];
 }
 
 export enum ItemType {

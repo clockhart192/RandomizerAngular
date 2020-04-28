@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { SpoilerLogApiService } from '../services/spoiler-log-service';
-
 import { RandomizerSession } from '../core/models/session-models';
-
-import { UpdateSessionRequest } from '../core/requests/update-session-request';
-import { DeleteSessionRequest } from '../core/requests/delete-session-request';
+import { UpdateSessionRequest,DeleteSessionRequest } from '../core/requests/sessions';
 
 @Component({
   selector: 'app-manage-sessions',
@@ -38,9 +34,9 @@ export class ManageSessionsComponent implements OnInit {
       });
   }
 
-  UpdateSession(): void {
+  UpdateSession(Session: RandomizerSession): void {
     this.IsWait = true;
-    let req = new UpdateSessionRequest(this.SelectedSession);
+    let req = new UpdateSessionRequest(Session);
     this.service.Post<RandomizerSession[]>('Session/UpdateSession', req).subscribe(sessions => {
       this.Sessions = sessions;
       this.IsWait = false;
