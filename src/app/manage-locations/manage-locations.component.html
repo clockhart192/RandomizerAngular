@@ -1,27 +1,27 @@
 <app-spinner-overlay *ngIf="IsWait" overlay="true">
 </app-spinner-overlay>
 
-<div *ngIf="Locations != null">
-    <mat-form-field>
+<div *ngIf="dataSource != null">
+    <mat-form-field class="filter-input">
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
-      </mat-form-field>
-    <table style="width: 100%;" mat-table [dataSource]="Locations" class="" matSort matSortActive="ID" matSortDisableClear matSortDirection="desc">
+        <input matInput (keyup)="applyFilter($event)">
+    </mat-form-field>
+    <table style="width: 100%;" mat-table [dataSource]="dataSource" class="" matSort matSortActive="ID"
+        matSortDisableClear matSortDirection="desc">
         <!-- Checkbox Column -->
-  <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null"
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()">
-      </mat-checkbox>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <mat-checkbox (click)="$event.stopPropagation()"
-                    (change)="$event ? selection.toggle(row) : null"
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
                     [checked]="selection.isSelected(row)">
-      </mat-checkbox>
-    </td>
-  </ng-container>
+                </mat-checkbox>
+            </td>
+        </ng-container>
         <!-- ID Column -->
         <ng-container matColumnDef="ID">
             <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -37,18 +37,19 @@
         <!-- ZoneID Column -->
         <ng-container matColumnDef="ZoneID">
             <th mat-header-cell *matHeaderCellDef>Zone</th>
-            <td mat-cell *matCellDef="let Location">{{Location.ZoneID}}</td>
+            <td mat-cell *matCellDef="let Location">{{GetZoneText(Location.ZoneID)}}</td>
         </ng-container>
 
         <!-- DefaultItemAtLocationName Column -->
         <ng-container matColumnDef="DefaultItemAtLocationName">
-            <th mat-header-cell *matHeaderCellDef>DefaultItemAtLocationName</th>
+            <th mat-header-cell *matHeaderCellDef>Default Item</th>
             <td mat-cell *matCellDef="let Location">{{Location.DefaultItemAtLocationName}}</td>
         </ng-container>
 
         <!-- Action Column -->
         <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef disableClear class="pull-right">
+                <mat-icon style="cursor: pointer;" *ngIf="selection.hasValue()" matTooltip="Update zone of selected" (click)="openEditZoneMultipleDialog(this.selection.selected)">edit</mat-icon>
                 <mat-icon style="cursor: pointer;" (click)="openDialog(null)">add</mat-icon>
             </th>
             <td mat-cell *matCellDef="let Location" class="pull-right">
@@ -60,5 +61,6 @@
         <tr mat-header-row *matHeaderRowDef="DisplayedColumns"></tr>
         <tr mat-row *matRowDef="let Location; columns: DisplayedColumns;"></tr>
     </table>
+</div> 
 
-</div>
+<mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>

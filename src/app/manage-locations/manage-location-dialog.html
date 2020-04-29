@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Manage Location</h1>
 <form (ngSubmit)="onYesClick()">
   <div mat-dialog-content>
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <mat-label>Name</mat-label>
       <input matInput placeholder="Name" name="Name" [(ngModel)]="Location.Name" [ngModelOptions]="{updateOn: 'submit'}">
     </mat-form-field>
@@ -15,7 +15,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <mat-label>Vanilla Item</mat-label>
       <input matInput placeholder="Vanilla Item" name="DefaultItemAtLocationName" [(ngModel)]="Location.DefaultItemAtLocationName" [ngModelOptions]="{updateOn: 'submit'}">
     </mat-form-field>

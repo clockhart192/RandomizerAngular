@@ -4,6 +4,10 @@ export class SaveLocationRequest {
     constructor(public Location: Location){}
 }
 
+export class SaveLocationsRequest {
+    constructor(public Locations: Location[]){}
+}
+
 export class DeleteLocationRequest {
     constructor(public Location: Location){}
 }
