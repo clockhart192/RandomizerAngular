@@ -61,10 +61,10 @@ export interface CollectionCounter
  
 export class Zone
 {
-    public ID: number;
-    public Name: string;
-    public OrderID: number;
-    public Locaitons: Location[];
+    public ID: number = 0;
+    public Name: string = "";
+    public OrderID: number = 0;
+    public Locaitons: Location[] = null;
 }
 
 export enum ItemType {

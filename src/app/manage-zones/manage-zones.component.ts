@@ -14,7 +14,7 @@ export class ManageZonesComponent implements OnInit {
   Zones: Zone[];
 
   IsWait: boolean = false;
-  DisplayedColumns: string[] = ['OrderID', 'Name','Action'];
+  DisplayedColumns: string[] = ['ID','OrderID', 'Name', 'Action'];
 
   constructor(private service: SpoilerLogApiService, public dialog: MatDialog) { }
 
@@ -64,12 +64,16 @@ export class ManageZonesComponent implements OnInit {
   openDialog(zone: Zone): void {
     const dialogRef = this.dialog.open(ManageZoneDialog, {
       width: '450px',
-      data: zone != null ? zone : new Zone()
+      data: zone
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //this.animal = result;
+    dialogRef.afterClosed().subscribe((zone: Zone) => {
+      if (zone.ID == 0) {
+        this.CreateZone(zone);
+      }
+      else {
+        this.UpdateZone(zone);
+      }
     });
   }
 }
@@ -80,16 +84,22 @@ export class ManageZonesComponent implements OnInit {
   styleUrls: ['./manage-zones.component.scss']
 })
 export class ManageZoneDialog {
-
+  IsNew: boolean = false;
+  WorkingZone: Zone;
   constructor(
     public dialogRef: MatDialogRef<ManageZoneDialog>,
-    @Inject(MAT_DIALOG_DATA) public Zone: Zone) { }
+    @Inject(MAT_DIALOG_DATA) public zone: Zone) {
+    if (this.zone == null) {
+      this.zone = new Zone();
+      this.IsNew = true;
+    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  onYesClick(): void{
-    console.log(this.Zone);
+  onYesClick(): void {
+    this.dialogRef.close(this.zone);
   }
 }

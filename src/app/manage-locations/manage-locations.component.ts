@@ -3,6 +3,8 @@ import { SpoilerLogApiService } from '../services/spoiler-log-service';
 import { Location, Zone } from '../core/models/spoiler-log';
 import { CreateLocationRequest, SaveLocationRequest, DeleteLocationRequest } from '../core/requests/location'
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-manage-locations',
@@ -11,13 +13,35 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dial
 })
 export class ManageLocationsComponent implements OnInit {
   Locations: Location[];
+  dataSource = new MatTableDataSource(this.Locations);
   IsWait: boolean = false;
-  DisplayedColumns: string[] = ['ID', 'Name', 'ZoneID', 'DefaultItemAtLocationName', 'Action'];
+  DisplayedColumns: string[] = ['select','ID', 'Name', 'ZoneID', 'DefaultItemAtLocationName', 'Action'];
 
   constructor(private service: SpoilerLogApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.GetAllLocations();
+  }
+
+  selection = new SelectionModel<Location>(true, []);
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.Locations.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.Locations.forEach(row => this.selection.select(row));
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   GetAllLocations(): void {
@@ -65,7 +89,7 @@ export class ManageLocationsComponent implements OnInit {
       data: location != null ? location : new Location()
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((locaiton:Location) => {
       console.log('The dialog was closed');
       //this.animal = result;
     });
@@ -83,10 +107,16 @@ export class ManageLocationDialog {
   constructor(
     public dialogRef: MatDialogRef<ManageLocationDialog>,
     @Inject(MAT_DIALOG_DATA) public Location: Location,
-    private service: SpoilerLogApiService) { }
+    private service: SpoilerLogApiService) {
+      this.GetAllZones();
+     }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  onYesClick(): void {
+    this.dialogRef.close(this.Location);
   }
 
   GetAllZones(): void {

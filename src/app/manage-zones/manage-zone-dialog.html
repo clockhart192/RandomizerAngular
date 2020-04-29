@@ -1,16 +1,19 @@
 <h1 mat-dialog-title>Manage Zone</h1>
-<div mat-dialog-content>
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Name" value="{{Zone.Name}}">
-    </mat-form-field>
+<form (ngSubmit)="onYesClick()">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" name="Name" [(ngModel)]="zone.Name" [ngModelOptions]="{updateOn: 'submit'}">
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Order Number</mat-label>
-        <input matInput type="number" placeholder="Order Number" value="Name.OrderID">
-    </mat-form-field>
-</div>
-<div mat-dialog-actions class="pull-right">
-    <button mat-flat-button (click)="onNoClick()">Cancel</button>
-    <button mat-flat-button color="primary" cdkFocusInitial>Ok</button>
-</div>
+        <mat-form-field>
+            <mat-label>Order Number</mat-label>
+            <input matInput type="number" name="OrderID" placeholder="Order Number" [(ngModel)]="zone.OrderID"
+                [ngModelOptions]="{updateOn: 'submit'}">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="pull-right">
+        <button mat-flat-button type="button" (click)="onNoClick()">Cancel</button>
+        <button mat-flat-button type="submit" color="primary" cdkFocusInitial>Ok</button>
+    </div>
+</form>
