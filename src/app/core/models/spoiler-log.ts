@@ -11,6 +11,7 @@ export interface OoTSpoilerLog extends SpoilerLog {
     FreeItem: Item;
     GoldSkulltulaCount : CollectionCounter;
     Locations: Location[];
+    Zones: Zone[];
     MainItems: Item[];
     Equipment: Item[];
     Songs: Item[];
@@ -64,7 +65,7 @@ export class Zone
     public ID: number = 0;
     public Name: string = "";
     public OrderID: number = 0;
-    public Locaitons: Location[] = null;
+    public Locations: Location[] = null;
 }
 
 export enum ItemType {

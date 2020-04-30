@@ -32,6 +32,7 @@ import { ManageSessionsComponent } from './manage-sessions/manage-sessions.compo
 import { SpoilerCounterComponent } from './spoiler-counter/spoiler-counter.component';
 import { ManageLocationsComponent, ManageLocationDialog, EditZoneMultipleDialog } from './manage-locations/manage-locations.component';
 import { ManageZonesComponent,ManageZoneDialog } from './manage-zones/manage-zones.component';
+import { SpoilerZoneComponent } from './spoiler-zone/spoiler-zone.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ManageZonesComponent,ManageZoneDialog } from './manage-zones/manage-zon
     ManageLocationDialog,
     ManageZonesComponent,
     ManageZoneDialog,
-    EditZoneMultipleDialog
+    EditZoneMultipleDialog,
+    SpoilerZoneComponent
   ],
   imports: [
     BrowserModule,

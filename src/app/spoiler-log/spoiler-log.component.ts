@@ -51,6 +51,7 @@ export class SpoilerLogComponent implements OnInit {
   SetupRandomizer(): void {
     this.View = this.RandomizerSession != null ? View[this.RandomizerSession.View] : "";
     this.playerView = this.RandomizerSession != null ? this.RandomizerSession.View == View.Player : false;
+    console.log(this.RandomizerSession);
   }
 
   ChangeText(): void {

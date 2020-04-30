@@ -61,7 +61,8 @@
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <div style="width: 100%;">
-                                <app-spoiler-counter [Counter]="RandomizerSession.SpoilerLog.GoldSkulltulaCount" [PlayerView]="this.playerView"></app-spoiler-counter>
+                                <app-spoiler-counter [Counter]="RandomizerSession.SpoilerLog.GoldSkulltulaCount"
+                                    [PlayerView]="this.playerView"></app-spoiler-counter>
                             </div>
                         </mat-grid-tile>
                     </mat-grid-list>
@@ -120,13 +121,15 @@
                             All of the individual location checks
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-
-                    <mat-grid-list cols="4" rowHeight="60px">
-                        <mat-grid-tile
-                            *ngFor="let Location of RandomizerSession.SpoilerLog.Locations; trackBy: trackByFn">
-                            <app-spoiler-location [Location]="Location"></app-spoiler-location>
-                        </mat-grid-tile>
-                    </mat-grid-list>
+                    <div *ngFor="let Zone of RandomizerSession.SpoilerLog.Zones;">
+                        <h1 style="margin-top: 20px;">{{Zone.Name}}</h1>
+                        <mat-grid-list cols="4" rowHeight="60px">
+                            <mat-grid-tile *ngFor="let Location of Zone.Locations;">
+                                <app-spoiler-location [Location]="Location"></app-spoiler-location>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-divider></mat-divider>
+                    </div>
                 </mat-expansion-panel>
             </mat-accordion>
         </mat-tab>
@@ -167,7 +170,7 @@
                             Randomizer Info
                         </mat-panel-title>
                         <mat-panel-description class="pull-right" *ngIf="panelRandomizerSettingsOpenState === false">
-                           Randomized settings for the seed.
+                            Randomized settings for the seed.
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-form-field>
@@ -176,55 +179,68 @@
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Tokensanity</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.Tokensanity}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.Tokensanity}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Scrubs</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleScrubs}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleScrubs}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Cows</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleCows}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleCows}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Songs</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleSongItems}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleSongItems}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Kokiri Sword</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleKokiriSword}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleKokiriSword}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Ocarinas</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleOcarinas}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleOcarinas}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Weird Egg</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleWeirdEgg}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleWeirdEgg}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Gerudo Card</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleGerudoCard}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleGerudoCard}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Beans</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleBeans}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleBeans}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Small Keys</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleSmallkeys}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleSmallkeys}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Boss Keys</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleBosskeys}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleBosskeys}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Shuffle Ganon Boss Key</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleGanonBosskey}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.ShuffleGanonBosskey}}"
+                            disabled>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Enhance Map Compass</mat-label>
-                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.EnhanceMapCompass}}" disabled>
+                        <input matInput value="{{RandomizerSession.SpoilerLog.RandomizedSettings.EnhanceMapCompass}}"
+                            disabled>
                     </mat-form-field>
                 </mat-expansion-panel>
             </mat-accordion>
