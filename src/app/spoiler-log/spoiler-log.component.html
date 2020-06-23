@@ -40,6 +40,11 @@
                             </div>
                         </mat-grid-tile>
                     </mat-grid-list>
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Leave a comment</mat-label>
+                        <textarea matInput placeholder="Miscellaneous Notes">{{RandomizerSession.SpoilerLog.Notes}}</textarea>
+                      </mat-form-field>
                 </mat-expansion-panel>
 
                 <mat-expansion-panel (opened)="panelEquipmentOpenState = true"

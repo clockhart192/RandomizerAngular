@@ -3,6 +3,8 @@ export interface SpoilerLog{
     FileHash: string[];
     Seed: string;
     SettingsString: string;
+    Notes: string;
+
 }
 
 export interface OoTSpoilerLog extends SpoilerLog {
